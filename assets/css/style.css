@@ -1,0 +1,58 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#autocomplete {
+    width: 100%;
+}
+
+#term {
+    border: 1px solid #000;
+}
+
+#term:focus {
+    outline-style: none;
+    box-shadow: none;
+}
+
+.autocomplete-wrap {
+    width: 100%;
+    position: relative;
+}
+
+.autocomplete {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: none;
+}
+
+.autocomplete ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.autocomplete li {
+    display: block;
+    padding: 0.5em;
+    color: #000;
+    cursor: pointer;
+}
+
+.autocomplete li:hover {
+    background: #f5f5f5;
+}
