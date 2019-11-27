@@ -1,27 +1,19 @@
 'use strict';
 
 
-const request = (url, queryString) => {
-    return new Promise((resolve, reject) => {
+const request = async (url, queryString) => {
 
-        fetch(url + '?' + queryString, {
-            method: 'GET'
-        }).then(response => {
-            if(response.ok) {
-                resolve(response.json());
-            } else {
-                reject({
-                    error: 500
-                });
-            }
-        });
-
+    const response = await fetch(url + '?' + queryString, {
+        method: 'GET'
     });
+
+    return response.ok ? response.json() : Promise.reject({error: 500});
+
 };
 
 const prepareLayout = () => {
     const wrap = document.querySelectorAll('.autocomplete-wrap');
-    Array.prototype.forEach.call(wrap, element => {
+    wrap.forEach(element => {
         let autocomplete = document.createElement('div');
         autocomplete.className = 'autocomplete';
         autocomplete.innerHTML = '<ul></ul>';
@@ -64,6 +56,7 @@ const autocomplete =  input => {
 
             try {
                 const results = await getResults(value);
+
                 wrap.innerHTML = results;
                 autocomplete.style.display = 'block';
             } catch(err) {
